@@ -4,7 +4,7 @@
 
     // Get current customers
     $query = "SELECT firstName, lastName FROM customers order by lastName";
-    $customers = $db->query($query);
+    $customers = $db->query($query); 
 ?>
 
 <!DOCTYPE html>
