@@ -1,4 +1,4 @@
--- create and select the database
+-- create and select the database 
 DROP DATABASE IF EXISTS shopDB;
 CREATE DATABASE shopDB;
 USE shopDB;
