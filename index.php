@@ -3,8 +3,14 @@
 
 
     // Get current customers
-    $query = "SELECT firstName, lastName FROM customers order by lastName";
-    $customers = $db->query($query); 
+    $customerID = 1;
+    $query = "SELECT firstName, lastName FROM customers where customerID=? order by lastName";
+    $customers = $db->prepare($query); 
+    $customers->bind_param('s', $customerID);
+    $customers->execute();
+    $customers->store_result();
+    //store results as variables
+    $customers->bind_result($firstName, $lastName);
 ?>
 
 <!DOCTYPE html>
@@ -29,28 +35,21 @@
         <div id="content">
             <!-- display a table of Customers -->
             
-            <table>
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Full Name</th>
-                </tr>
-                <?php foreach ($customers as $customer) : ?>
-                <tr>
-                    <td><?php echo $customer['firstName']; ?></td>
-                    <td><?php echo $customer['lastName']; ?></td>
-                    <td><?php echo $customer['firstName']; ?> <?php echo $customer['lastName']; ?></td>
-                    
-                </tr>
-                <?php endforeach; ?>
-            </table>
+                <?php while ($customers->fetch()){
+                    echo "<p>First Name: ".$firstName."";
+                    echo "<br />Last Name: ".$lastName;
+                } ?>
+                  
         </div>
     </div>
-
     <div id="footer">
         <p>&copy; <?php echo date("Y"); ?> My Shop, Inc.</p>
     </div>
 
     </div><!-- end page -->
+<?php
+    $customers->free_result();
+    $db->close();
+?>
 </body>
 </html>
