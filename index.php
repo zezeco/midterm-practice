@@ -4,7 +4,7 @@
 
     // Get current customers
     $customerID = 1;
-    $query = "SELECT firstName, lastName FROM customers where customerID=? order by lastName";
+    $query = "SELECT firstName, lastName FROM customers where customerID = ? order by lastName";
     $customers = $db->prepare($query); 
     $customers->bind_param('s', $customerID);
     $customers->execute();
@@ -27,7 +27,7 @@
     <div id="page">
 
     <div id="header">
-        <h1>Customer relations</h1>
+        <h1>customer service</h1>
     </div>
 
     <div id="main">
