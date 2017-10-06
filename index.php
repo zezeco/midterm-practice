@@ -3,8 +3,8 @@
 
 
     // Get current customers
-    $customerID = 1;
-    $query = "SELECT firstName, lastName FROM customers where customerID = ? order by lastName";
+    $customerID = 1002;
+    $query = "SELECT firstName, lastName FROM customers where customerID=? order by lastName";
     $customers = $db->prepare($query); 
     $customers->bind_param('s', $customerID);
     $customers->execute();
